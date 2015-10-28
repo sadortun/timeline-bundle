@@ -23,7 +23,10 @@ class QueryExecutor implements QueryExecutorInterface
         }
 
         if ($maxPerPage) {
-            $offset = ($page - 1) * (int) $maxPerPage;
+            if($page < 0 )
+                $offset = - $page;
+            else
+                $offset = ($page - 1) * (int) $maxPerPage;
 
             $query
                 ->setFirstResult($offset)
